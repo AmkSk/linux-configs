@@ -49,7 +49,7 @@ include "$HOME/.cache/wal/colors-sway"
 client.focused $color0 $background #ffffff $color7 $color13
 client.unfocused #32323200 #32323200 #ffffff $color3 #32323200
 
-font SF 10
+font SF-Pro-Display-Regular 10
 
 # Windows
 #hide_edge_borders both
@@ -295,3 +295,7 @@ exec redshift -m wayland
 exec mako
 exec safeeyes
 exec greenclip daemon
+
+# SSH keys
+exec eval $(ssh-agent -s)
+exec ssh-add ~/.ssh/amk

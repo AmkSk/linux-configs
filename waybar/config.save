@@ -18,9 +18,8 @@
         "tooltip": false
     },
     "clock": {
-        "format": "{:%a  %d.%m.  %H:%M}",
-        "tooltip": false,
-        "on-click": "gnome-calendar"
+        "format": "{:%a %d %b %H:%M}",
+        "tooltip": false
     },
     "battery": {
         "format": "{capacity}% {icon}",

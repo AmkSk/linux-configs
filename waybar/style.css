@@ -1,7 +1,7 @@
 * {
     border:        none;
     border-radius: 0;
-    font-family:   SF;
+    font-family:   SF Pro Display;;
     font-size:     15px;
     box-shadow:    none;
     text-shadow:   none;
@@ -41,8 +41,8 @@ window {
 }
 
 #clock {
-    margin:     0px 16px 0px 10px;
-    min-width:  140px;
+    margin:     0px 10px 0px 10px;
+    min-width:  100px;
 }
 
 #battery.warning {
