@@ -172,6 +172,11 @@ exec swayidle -w \
 #
 # Workspaces:
 #
+    #set $workspace1 '1  '
+    #set $workspace2 "2  "
+    #set $workspace4 "4  "
+    #set $workspace5 "5  "
+
     # switch to workspace
     bindsym $mod+1 workspace 1
     bindsym $mod+2 workspace 2
@@ -183,6 +188,7 @@ exec swayidle -w \
     bindsym $mod+8 workspace 8
     bindsym $mod+9 workspace 9
     bindsym $mod+0 workspace 10
+
     # move focused container to workspace
     bindsym $mod+Shift+1 move container to workspace 1
     bindsym $mod+Shift+2 move container to workspace 2
@@ -196,6 +202,20 @@ exec swayidle -w \
     bindsym $mod+Shift+0 move container to workspace 10
     # Note: workspaces can have any name you want, not just numbers.
     # We just use 1-10 as the default.
+
+    # switch to prev/next workspace
+    bindsym Ctrl+Alt+Left workspace prev
+    bindsym Ctrl+Alt+Right workspace next
+
+    # switching between workspaces
+    bindsym $mod+Tab workspace back_and_forth
+
+    # create new workspace on first available index
+    bindsym $mod+n exec ~/.config/sway/createNewWorkspace.sh
+
+    # move to new workspace
+    bindsym $mod+Shift+n exec ~/.config/sway/moveToNewWorkspace.sh
+
 #
 # Layout stuff:
 #
@@ -295,6 +315,7 @@ exec redshift -m wayland
 exec mako
 exec safeeyes
 exec greenclip daemon
+exec volnoti
 
 # SSH keys
 exec eval $(ssh-agent -s)
