@@ -19,3 +19,9 @@ export PATH=$PATH:$SCRIPTS
 
 # Flutter
 export PATH="$PATH:/home/amk/flutter/bin"
+
+# Keyboard Switching
+export KEYBOARD_LAYOUT="us"
+
+# Editor
+export EDITOR=nvim

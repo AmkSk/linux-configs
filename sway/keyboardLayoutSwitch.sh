@@ -1,10 +1,10 @@
 #!/bin/bash
-layout=$KEYBOARD_LAYOUT
 
-if [ layout=="" ];
- then layout=$KEYBOARD_LAYOUT;
- else layout="us"
-fi
+# I am not saving the layout to some environment variable, because it just doesn't work with sway.
+# It is just ignored (even when I use "exec source {script}"
+PATH_TO_FILE="/home/amk/.keyboard_layout"
+
+layout=`cat $PATH_TO_FILE`
 
 if [ $layout == "us" ];
  then layout="sk"
@@ -12,4 +12,4 @@ if [ $layout == "us" ];
 fi
 
 swaymsg input "*" xkb_layout `echo $layout`
-export KEYBOARD_LAYOUT=$layout
+echo $layout > $PATH_TO_FILE

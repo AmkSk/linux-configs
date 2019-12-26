@@ -155,10 +155,10 @@ alias open='xdg-open'
 alias settings='env XDG_CURRENT_DESKTOP=GNOME gnome-control-center'
 
 # powerline shell
-function _update_ps1() {
-    PS1=$(powerline-shell $?)
-}
+# function _update_ps1() {
+#     PS1=$(powerline-shell $?)
+# }
 
-if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
-    PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
-fi
+# if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
+#     PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+# fi
