@@ -5,7 +5,7 @@
 
     "modules-left": ["sway/workspaces", "sway/mode", "sway/window"],
     "modules-center": [],
-    "modules-right": ["custom/media", "backlight", "pulseaudio", "network", "battery", "clock"],
+    "modules-right": ["custom/media", "memory", "custom/layout", "backlight", "pulseaudio", "network", "battery", "clock"],
     "sway/mode": {
         "format": " {}"
     },
@@ -32,6 +32,11 @@
             "critical": 10
         },
         "tooltip": false
+    },
+    "memory": {
+    	"interval": 30,
+    	"format": "{used:0.1f}G/{total:0.1f}G ",
+	"on-click": "gnome-system-monitor"
     },
     "network": {
         "format": "{icon}",
@@ -65,6 +70,12 @@
         "format-icons": ["", ""],
         "on-scroll-down": "light -A 1",
         "on-scroll-up": "light -U 1"
+    },
+    "custom/layout": {
+    	"format": "    {}  ",
+		"exec": "$HOME/.config/waybar/layout.sh",
+		"interval": "once",
+		"signal": 8
     },
     "custom/media": {
         "format": "{icon} {}",

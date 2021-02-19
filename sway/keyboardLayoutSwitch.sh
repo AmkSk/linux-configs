@@ -11,5 +11,9 @@ if [ $layout == "us" ];
  else layout="us"
 fi
 
-swaymsg input "*" xkb_layout `echo $layout`
+swaymsg input "type:keyboard" xkb_layout `echo $layout`
 echo $layout > $PATH_TO_FILE
+
+#send signal to waybar
+pkill -RTMIN+8 waybar
+

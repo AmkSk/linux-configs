@@ -10,7 +10,7 @@ export ANDROID_HOME=$HOME/sdk
 
 
 # Java PATH
-export JAVA_HOME="/usr/lib/jvm/java-8-jdk/"
+export JAVA_HOME="/usr/lib/jvm/java-11-jdk/"
 export PATH=$JAVA_HOME/bin:$PATH
 
 # Custom Scripts

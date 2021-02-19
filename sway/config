@@ -7,6 +7,7 @@
 ############################################################
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
+set $mod2 Alt_R
 
 # Wallpaper
 set $wallpaper /home/amk/Pictures/Backgrounds/firewatch-3840x2160-4k-8k-art-forest-13610.jpg
@@ -22,7 +23,9 @@ set $term kitty
 
 # Your preferred application launcher
 # Note: it's recommended that you pass the final command to sway
-set $menu dmenu_path | rofi -show drun -no-show-match -no-sort -show-icons | xargs swaymsg exec
+
+#set $menu dmenu_path | rofi -show drun -no-show-match -no-sort -show-icons | xargs swaymsg exec
+set $menu ulauncher-toggle
 
 ############################################################
 #                      Output Config
@@ -35,7 +38,7 @@ set $menu dmenu_path | rofi -show drun -no-show-match -no-sort -show-icons | xar
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
 #output eDP-1 scale 2 pos 0 1080 resolution 3000x2000
-output eDP-1 scale 2 resolution 3000x2000 scale_filter nearest 
+output eDP-1 scale 2 resolution 3000x2000 scale_filter linear
 output DP-1 scale 1 pos 0 0 resolution 2560x1440 
 
 ############################################################
@@ -72,10 +75,17 @@ bar {
 set $gnome-schema org.gnome.desktop.interface
 
 exec_always {
-    gsettings set $gnome-schema gtk-theme 'OSX-Arc-Darker'
+    gsettings set $gnome-schema gtk-theme 'X-Arc-Darker'
+    gsettings set $gnome-schema cursor-theme 'capitaine-cursors'
     #gsettings set $gnome-schema icon-theme 'Your icon theme'
     #gsettings set $gnome-schema cursor-theme 'Your cursor Theme'
 }
+
+# Set cursor theme
+seat * xcursor_theme 'capitaine-cursors'
+
+# Hide mouse
+#seat * hide_cursor 8000
 
 ############################################################
 #                    Input configuration
@@ -84,16 +94,22 @@ exec_always {
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
 
-# Every input will use these options
-input "*" {
+input type:touchpad {
     tap enabled
     natural_scroll enabled
-    xkb_options ctrl:swap_lalt_lctl
-    xkb_numlock enabled
 }
 
-#input * xkb_layout us,sk" 
-#input * xkb_options "ctrl:swap_lalt_lctl,grp:lalt_shift_toggle"
+input type:pointer {
+    natural_scroll enabled
+}
+
+# Every input will use these options
+input type:keyboard {
+#    xkb_layout us,sk
+#    xkb_options ctrl:swap_lalt_lctl,altwin:menu_win
+    xkb_options altwin:menu_win
+    xkb_numlock enabled
+}
 
 ############################################################
 #                    Idle configuration
@@ -116,15 +132,16 @@ exec swayidle -w \
 #
     # start a terminal
     bindsym $mod+Return exec $term
+    bindsym $mod2+Return exec $term
     bindsym $mod+KP_Enter exec $term
 
     # open ranger
-    bindsym $mod+Shift+Return exec termite -e ~/.config/sway/launchRanger.sh 
+    bindsym $mod+Shift+Return exec $term -e ~/.config/sway/launchRanger.sh 
 
     # kill focused window
     bindsym $mod+Shift+q kill
 
-    # start rofi
+    # start app launcher (menu)
     bindsym $mod+d exec $menu
 
     # Drag floating windows by holding down $mod and left mouse button.
@@ -146,6 +163,9 @@ exec swayidle -w \
     #bindsym Control+Mod1+l exec dm-tool switch-to-greeter
     #bindsym Control+Mod1+l exec betterlockscreen -l dim
     
+    # Logout screen selection
+    bindsym Control+Shift+F12 exec wlogout
+
     # Clipboard manager
     #bindsym Control+Shift+v exec rofi -modi "clipboard:greenclip print" -show clipboard -run command '{cmd}'
     bindsym Control+Shift+v exec clipman pick --tool="rofi"
@@ -180,26 +200,26 @@ exec swayidle -w \
 #
 
     # switch to workspace
-    bindsym $mod+1 workspace 1
-    bindsym $mod+KP_1 workspace 1
-    bindsym $mod+2 workspace 2
-    bindsym $mod+KP_2 workspace 2
-    bindsym $mod+3 workspace 3
-    bindsym $mod+KP_3 workspace 3
-    bindsym $mod+4 workspace 4
-    bindsym $mod+KP_4 workspace 4
-    bindsym $mod+5 workspace 5
-    bindsym $mod+KP_5 workspace 5
-    bindsym $mod+6 workspace 6
-    bindsym $mod+KP_6 workspace 6
-    bindsym $mod+7 workspace 7
-    bindsym $mod+KP_7 workspace 7
-    bindsym $mod+8 workspace 8
-    bindsym $mod+KP_8 workspace 8
-    bindsym $mod+9 workspace 9
-    bindsym $mod+KP_9 workspace 9
-    bindsym $mod+0 workspace 10
-    bindsym $mod+KP_0 workspace 10
+    bindsym $mod+1 workspace number 1
+    bindsym $mod+KP_1 workspace number 1
+    bindsym $mod+2 workspace number 2
+    bindsym $mod+KP_2 workspace number 2
+    bindsym $mod+3 workspace number 3
+    bindsym $mod+KP_3 workspace number 3
+    bindsym $mod+4 workspace number 4
+    bindsym $mod+KP_4 workspace number 4
+    bindsym $mod+5 workspace number 5
+    bindsym $mod+KP_5 workspace number 5
+    bindsym $mod+6 workspace number 6
+    bindsym $mod+KP_6 workspace number 6
+    bindsym $mod+7 workspace number 7
+    bindsym $mod+KP_7 workspace number 7
+    bindsym $mod+8 workspace number 8
+    bindsym $mod+KP_8 workspace number 8
+    bindsym $mod+9 workspace number 9
+    bindsym $mod+KP_9 workspace number 9
+    bindsym $mod+0 workspace number 10
+    bindsym $mod+KP_0 workspace number 10
 
     # move focused container to workspace
     bindsym $mod+Shift+1 move container to workspace 1
@@ -323,9 +343,7 @@ bindsym XF86HomePage exec firefox
 
 # keyboard language switching
 
-bindsym Ctrl+Space exec source /home/amk/.config/sway/keyboardLayoutSwitch.sh
-#bindsym Ctrl+Space exec swaymsg input "*" xkb_layout sk
-#bindsym $mod+Ctrl+Space exec swaymsg input "*" xkb_layout us
+bindsym Alt+Space exec source /home/amk/.config/sway/keyboardLayoutSwitch.sh
 
 ############################################################
 #                     Taking screenshots
@@ -347,11 +365,13 @@ exec xrdb -load ~/.Xresources
 exec redshift -m wayland
 exec mako
 exec safeeyes
-#exec greenclip daemon
 exec wl-paste -t text --watch clipman store
 exec volnoti
-exec_always --no-startup-id flashfocus
+exec_always /opt/smoothFade.py
+exec eval (ssh-agent -c)
+exec_always autotiling
+exec kanshi
 
-# SSH keys
-exec eval $(ssh-agent -s)
-exec ssh-add ~/.ssh/amk
+#exec GDK_BACKEND=wayland ulauncher --hide-window
+exec ulauncher --hide-window
+for_window [app_id="ulauncher"] floating enable, border none

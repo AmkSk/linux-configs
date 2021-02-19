@@ -40,6 +40,10 @@ window {
     min-width:  25px;
 }
 
+#memory {
+    margin-left: 12px
+}
+
 #clock {
     margin:     0px 10px 0px 10px;
     min-width:  100px;
