@@ -1,3 +1,3 @@
 #!/bin/bash
-swaymsg workspace `/home/amk/.config/sway/getNewWorkspaceNumber.sh`
+swaymsg workspace number `/home/amk/.config/sway/getNewWorkspaceNumber.sh`
 

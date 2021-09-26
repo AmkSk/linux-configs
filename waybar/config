@@ -5,12 +5,12 @@
 
     "modules-left": ["sway/workspaces", "sway/mode", "sway/window"],
     "modules-center": [],
-    "modules-right": ["custom/media", "memory", "custom/layout", "backlight", "pulseaudio", "network", "battery", "clock"],
+    "modules-right": ["custom/media", "memory", "custom/layout", "backlight", "pulseaudio", "bluetooth", "network", "battery", "clock"],
     "sway/mode": {
         "format": " {}"
     },
     "sway/workspaces": {
-        "format": "{name}",
+        "format": "{}",
         "disable-scroll": true
     },
     "sway/window": {
@@ -53,10 +53,11 @@
     "pulseaudio": {
         "format": "{icon}",
         "format-alt": "{volume} {icon}",
-        "format-alt-click": "click-right",
+	"format-alt-click": "click-right",
+	"format-bluetooth": "{volume}% {icon}",
         "format-muted": "",
         "format-icons": {
-            "phone": [" ", " ", " ", " "],
+            "headphone": [" ", " ", " ", " "],
             "default": ["", "", ""]
         },
         "scroll-step": 10,
@@ -87,5 +88,14 @@
         },
         "escape": true,
         "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
+    },
+    "bluetooth": {
+	"format": "{icon}",
+	"interval": 30,
+	"format-icons":{
+		"enabled": "    ",
+		"disabled": ""
+	},
+	"on-click": "blueberry"
     }
 }
