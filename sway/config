@@ -379,8 +379,9 @@ exec_always /opt/smoothFade.py
 exec eval (ssh-agent -c)
 exec_always autotiling
 exec kanshi
+exec sway-audio-idle-inhibit
 
 #exec GDK_BACKEND=wayland ulauncher --hide-window
 exec ulauncher --hide-window
 for_window [app_id="ulauncher"] floating enable, border none
-exec_always --no-startup-id ~/Downloads/workstyle/target/debug/workstyle &> /tmp/workstyle.log
+exec_always --no-startup-id sworkstyle
