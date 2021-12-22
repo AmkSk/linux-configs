@@ -1,0 +1,13 @@
+#!/bin/bash
+mkdir -p ./configs/mako
+mkdir -p ./configs/sway
+mkdir -p ./configs/waybar
+mkdir -p ./configs/ranger
+
+sudo cp ~/.config/mako/config ./configs/mako/config
+sudo cp ~/.config/sway/* ./configs/sway/
+sudo cp ~/.config/waybar/* ./configs/waybar/
+sudo cp ~/.config/ranger/* ./configs/ranger/
+
+cp ~/.bashrc ./configs/
+cp ~/.bash_profile ./configs/
